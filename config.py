@@ -14,7 +14,7 @@ def parse_ids(raw_str: str) -> list[int]:
     if not raw_str:
         return result
     for item in raw_str.split(","):
-        clean = item.strip()
+        clean = item.strip().strip("'\"")
         if (clean.startswith("-") and clean[1:].isdigit()) or clean.isdigit():
             result.append(int(clean))
     return result

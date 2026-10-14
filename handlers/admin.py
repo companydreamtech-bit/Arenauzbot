@@ -1,6 +1,6 @@
 from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery, InputMediaPhoto
-from aiogram.filters import Command
+from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 
 from config import ADMIN_IDS
@@ -42,12 +42,17 @@ async def has_admin_permission(bot: Bot, chat_id: int, user_id: int) -> bool:
 
 # ===================== ADMIN PANEL BOSHQARUVI =====================
 
-@router.message(Command("admin"))
-@router.message(F.text == "👑 Admin paneli")
-async def cmd_admin(message: Message):
+@router.message(Command("admin"), StateFilter("*"))
+@router.message(F.text.in_(["👑 Admin paneli", "Admin paneli", "Admin", "👑 Admin"]), StateFilter("*"))
+async def cmd_admin(message: Message, state: FSMContext):
     """Admin panel asosiy sahifasi"""
+    await state.clear()
     if not is_admin(message.from_user.id):
-        await message.answer("⛔️ Kechirasiz, ushbu bo'lim faqat bot administratorlari uchun mo'ljallangan.")
+        await message.answer(
+            f"⛔️ Kechirasiz, ushbu bo'lim faqat bot administratorlari uchun mo'ljallangan.\n"
+            f"Sizning Telegram ID raqamingiz: <code>{message.from_user.id}</code>",
+            parse_mode="HTML"
+        )
         return
 
     stadium_stats = count_stadiums()

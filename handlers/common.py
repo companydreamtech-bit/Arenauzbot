@@ -148,8 +148,8 @@ async def auto_reply_keywords(message: Message, state: FSMContext):
         )
         return
 
-    # Taklif, shikoyat, muammo, admin bo'yicha so'rovlar
-    feedback_keywords = ["shikoyat", "taklif", "muammo", "admin", "yordam", "bog'lanish", "aloqa", "kontakt"]
+    # Taklif, shikoyat, muammo bo'yicha so'rovlar
+    feedback_keywords = ["shikoyat", "taklif", "muammo", "yordam", "bog'lanish", "aloqa", "kontakt"]
     if any(k in text_lower for k in feedback_keywords):
         await message.answer(
             "📝 <b>Taklif, shikoyat yoki savolingiz bormi?</b>\n\n"
