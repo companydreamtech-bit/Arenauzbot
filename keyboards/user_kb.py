@@ -10,10 +10,10 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 def main_menu_keyboard(is_admin: bool = False) -> ReplyKeyboardMarkup:
     """Asosiy menyu klaviaturasi (adminlar uchun qo'shimcha Admin tugmasi bilan)"""
     keyboard = [
-        [KeyboardButton(text="🏟 Stadion joylash (Ariza qoldirish)")],
+        [KeyboardButton(text="🏟 Stadion joylashtirish")],
         [
             KeyboardButton(text="📋 Mening arizalarim"),
-            KeyboardButton(text="📝 Taklif va shikoyat yuborish")
+            KeyboardButton(text="✍️ Taklif va shikoyat")
         ],
         [KeyboardButton(text="❓ Ko'p beriladigan savollar")]
     ]

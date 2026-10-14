@@ -37,7 +37,7 @@ def normalize_phone(phone_str: str) -> str | None:
 
 # ===================== ARIZANI BOSHLASH =====================
 
-@router.message(F.text == "🏟 Stadion joylash (Ariza qoldirish)")
+@router.message(F.text.in_(["🏟 Stadion joylashtirish", "🏟 Stadion joylash", "🏟 Stadion joylash (Ariza qoldirish)"]))
 async def start_stadium_registration(message: Message, state: FSMContext):
     """Stadion joylash jarayonini boshlash"""
     await state.clear()

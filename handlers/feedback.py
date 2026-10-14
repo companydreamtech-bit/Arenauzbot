@@ -19,7 +19,7 @@ router = Router()
 
 # ===================== MUROJAATNI BOSHLASH =====================
 
-@router.message(F.text == "📝 Taklif va shikoyat yuborish")
+@router.message(F.text.in_(["✍️ Taklif va shikoyat", "📝 Taklif va shikoyat yuborish", "📝 Taklif va shikoyat", "✍️ Taklif va shikoyatlar"]))
 async def start_feedback(message: Message, state: FSMContext):
     """Murojaat yuborish jarayonini boshlash"""
     await state.clear()

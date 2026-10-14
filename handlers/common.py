@@ -42,8 +42,11 @@ async def cmd_start(message: Message, state: FSMContext, command: CommandObject 
     first_name = message.from_user.first_name or "Foydalanuvchi"
     text = (
         f"Assalomu alaykum, hurmatli <b>{first_name}</b>!\n\n"
-        f"🏟 <b>ArenaBot</b> — stadionlarni ro'yxatdan o'tkazish, taklif va shikoyatlarni qabul qilish "
-        f"hamda so'rovlaringizga tezkor javob berish tizimiga xush kelibsiz.\n\n"
+        f"🏟 <b>Arenauz botiga xush kelibsiz!</b>\n\n"
+        f"Ushbu bot orqali siz:\n"
+        f"▫️ Stadioningizni botga joylashtirishingiz;\n"
+        f"▫️ Yuborgan arizalaringiz holatini ko'rishingiz;\n"
+        f"▫️ Taklif va shikoyatlaringizni adminlarga yo'llashingiz mumkin.\n\n"
         f"Quyidagi bo'limlardan birini tanlang:"
     )
     await message.answer(text, reply_markup=main_menu_keyboard(is_admin=user_is_admin), parse_mode="HTML")
@@ -69,7 +72,7 @@ async def cmd_cancel(message: Message, state: FSMContext):
         )
 
 
-@router.message(F.text == "❓ Ko'p beriladigan savollar")
+@router.message(F.text.in_(["❓ Ko'p beriladigan savollar", "Ko'p beriladigan savollar", "❓ FAQ", "ℹ️ Ko'p beriladigan savollar"]))
 async def show_faq_menu(message: Message):
     """Ko'p beriladigan savollar ro'yxatini ko'rsatish"""
     text = (
